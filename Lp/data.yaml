@@ -1,0 +1,13 @@
+train: /content/gdrive/MyDrive/Colab Notebook/LicensePlateDetection/Lp/test/images
+val: /content/gdrive/MyDrive/Colab Notebook/LicensePlateDetection/Lp/train/images
+test: /content/gdrive/MyDrive/Colab Notebook/LicensePlateDetection/Lp/valid/images
+
+nc: 2
+names: ['license-plate', 'vehicle']
+
+roboflow:
+  workspace: samrat-sahoo
+  project: license-plates-f8vsn
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/samrat-sahoo/license-plates-f8vsn/dataset/3
