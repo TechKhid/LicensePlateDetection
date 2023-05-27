@@ -153,7 +153,123 @@ notifications
 <div class="container-fluid py-4">
  
 <h1 style="color:#000">  &nbsp;&nbsp;  &nbsp;&nbsp;Summary Report</h1>
+<br>
+<br>
+  <div class="row">
+          <div class="col-lg-6 col-md-4 col-sm-3 mt-lg-0 mt-4">
+            <div class="card ">
+              <div class="card-header p-3 pt-2 bg-transparent">
+                <div
+                  class="icon icon-lg icon-shape bg-gradient-info text-center border-radius-xl mt-n4 position-absolute"
+                  style="background-color: #000!important;background-image: unset;">
+                <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">directions_car</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-md mb-0 text-capitalize ">Total Registered Vechicles</p>
+                  <br>
+                  
+                  <h3 class="mb-0 "><?php function lastID($dbConn){
 
+    $sql = "SELECT count(*) FROM missing_record"; 
+    $result = $dbConn->prepare($sql); 
+    $result->execute(); 
+    return $result->fetchColumn(); 
+    }
+echo lastID($dbConn);
+    ?></h3>
+                </div>
+              </div>
+
+            </div>
+          </div>
+<hr>
+          <div class="col-lg-6 col-md-4 col-sm-3 mt-lg-0 mt-4">
+            <div class="card ">
+              <div class="card-header p-3 pt-2 bg-transparent">
+                <div
+                  class="icon icon-lg icon-shape bg-gradient-info text-center border-radius-xl mt-n4 position-absolute"
+                  style="background-color: #000!important;background-image: unset;">
+                <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">flag_circle</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-md mb-0 text-capitalize ">Total Vechicles Detected</p>
+                  <br>
+                  
+                  <h3 class="mb-0 "><?php function lastID1($dbConn){
+
+    $sql = "SELECT count(*) FROM scan"; 
+    $result = $dbConn->prepare($sql); 
+    $result->execute(); 
+    return $result->fetchColumn(); 
+    }
+echo lastID1($dbConn);
+    ?></h3>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+<hr>
+          <div class="col-lg-6 col-md-4 col-sm-3 mt-lg-0 mt-4">
+            <div class="card ">
+              <div class="card-header p-3 pt-2 bg-transparent">
+                <div
+                  class="icon icon-lg icon-shape bg-gradient-info text-center border-radius-xl mt-n4 position-absolute"
+                  style="background-color: #000!important;background-image: unset;">
+                <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">query_stats</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-md mb-0 text-capitalize ">Total Vechicles Found</p>
+                  <br>
+                  
+                  <h3 class="mb-0 "><?php function lastID2($dbConn){
+
+    $sql = "SELECT count(*) FROM missing_record WHERE report_status='FOUND'"; 
+    $result = $dbConn->prepare($sql); 
+    $result->execute(); 
+    return $result->fetchColumn(); 
+    }
+echo lastID2($dbConn);
+    ?></h3>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+<hr>
+          <div class="col-lg-6 col-md-4 col-sm-3 mt-lg-0 mt-4">
+            <div class="card ">
+              <div class="card-header p-3 pt-2 bg-transparent">
+                <div
+                  class="icon icon-lg icon-shape bg-gradient-info text-center border-radius-xl mt-n4 position-absolute"
+                  style="background-color: #000!important;background-image: unset;">
+                <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">wifi_find</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-md mb-0 text-capitalize ">Total Vechicles Searching</p>
+                  <br>
+                  
+                  <h3 class="mb-0 "><?php function lastID3($dbConn){
+
+    $sql = "SELECT count(*) FROM missing_record WHERE report_status='SEARCHING'"; 
+    $result = $dbConn->prepare($sql); 
+    $result->execute(); 
+    return $result->fetchColumn(); 
+    }
+echo lastID3($dbConn);
+    ?></h3>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          
+
+        </div>
 </div>
 <footer class="footer py-4  ">
 <div class="container-fluid">

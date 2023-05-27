@@ -174,10 +174,10 @@ notifications
   
                 <tr>
                   <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></span></td>
-                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></td>
-                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['id']?></span></td>
-                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></span></td>
-                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['id']?></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['number_plate']?></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><button>View Images</button></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['Location']?></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['DataTime']?></span></td>
                     
                 </tr><?php
 

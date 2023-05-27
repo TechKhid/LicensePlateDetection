@@ -212,15 +212,23 @@ notifications
             <tbody id="Staffs_body">
               <?php
 
-              $result = $dbConn->query("SELECT * FROM scan ORDER BY id DESC");
+              $result = $dbConn->query("SELECT * FROM missing_record ORDER BY id DESC");
               while($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
   
                 <tr>
                   <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></span></td>
-                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></td>
-                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['id']?></span></td>
-                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></span></td>
-                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['id']?></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['car_id']?></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['num_plate']?></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['car_make']?></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['car_model']?></span></td>
+                     <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['date_stolen']?></span></td>
+                    
+                     <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['report_status']?></span></td>
+                    
+                     <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['person_name']?></span></td>
+                    
+                     <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['person_address']?></span></td>
+                    
                     
                 </tr><?php
 
