@@ -1,4 +1,8 @@
 
+<?php
+include("config.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,20 +60,20 @@
 <ul class="navbar-nav">
 
 <li class="nav-item">
-<a class="nav-link" href="repors.php" target="_blank">
-<i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">report</i>
+<a class="nav-link" href="reports.php" >
+<i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">line_axis</i>
 <span class="nav-link-text ms-2 ps-1">Reports</span>
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="repors.php" target="_blank">
+<a class="nav-link" href="registered.php">
 <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">receipt_long</i>
 <span class="nav-link-text ms-2 ps-1">Registered Cars</span>
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="repors.php" target="_blank">
-<i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">receipt_long</i>
+<a class="nav-link" href="scanned.php">
+<i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">flag_circle</i>
 <span class="nav-link-text ms-2 ps-1">Scanned Cars</span>
 </a>
 </li>
@@ -147,7 +151,43 @@ notifications
 </nav>
 
 <div class="container-fluid py-4">
- 
+<h1 style="color:#000">  &nbsp;&nbsp;  &nbsp;&nbsp;Scanned Vehicles</h1>
+   <div class="table-responsive">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#ID</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NO. Plates</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Images</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date
+                </th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Location</th>
+               
+
+              </tr>
+            </thead>
+            <tbody id="Staffs_body">
+              <?php
+
+              $result = $dbConn->query("SELECT * FROM scan ORDER BY id DESC");
+              while($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
+  
+                <tr>
+                  <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['id']?></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['id']?></span></td>
+                    
+                </tr><?php
+
+}
+$dbConn = null;?>
+
+            
+            </tbody>
+          </table>
+        </div>
 
 </div>
 <footer class="footer py-4  ">

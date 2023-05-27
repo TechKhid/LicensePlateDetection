@@ -1,4 +1,41 @@
 
+<?php
+include("config.php");
+if ($_POST){
+
+$car_id = $_POST['in_CarId'];
+$num_plate = $_POST['in_NumPlate'];
+$car_make = $_POST['in_CarMake'];
+$car_model = $_POST['in_CarModel'];
+$car_colour = $_POST['in_CarColour'];
+$car_last_seen = $_POST['in_CarLastSeen'];
+$date_stolen = $_POST['in_DateStolen'];
+$report_status = $_POST['in_ReportStatus'];
+$person_name = $_POST['in_PersonName'];
+$person_phone = $_POST['in_PersonPhone'];
+$person_address = $_POST['in_PersonAddress'];
+
+$sql = "INSERT INTO missing_record (id,,car_id,num_plate,car_make,car_model,car_colour,car_last_seen,date_stolen,report_status,person_name,person_phone,person_address) VALUES (:id,:,:car_id,:num_plate,:car_make,:car_model,:car_colour,:car_last_seen,:date_stolen,:report_status,:person_name,:person_phone,:person_address)";
+$query = $dbConn->prepare($sql);
+$query->bindparam(':id', $id);
+
+$query->bindparam(':car_id', $car_id);
+$query->bindparam(':num_plate', $num_plate);
+$query->bindparam(':car_make', $car_make);
+$query->bindparam(':car_model', $car_model);
+$query->bindparam(':car_colour', $car_colour);
+$query->bindparam(':car_last_seen', $car_last_seen);
+$query->bindparam(':date_stolen', $date_stolen);
+$query->bindparam(':report_status', $report_status);
+$query->bindparam(':person_name', $person_name);
+$query->bindparam(':person_phone', $person_phone);
+$query->bindparam(':person_address', $person_address);
+$query->execute();
+$dbConn = null;
+header("registered.php");
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,22 +91,21 @@
 <hr class="horizontal light mt-0 mb-2">
 <div class="collapse navbar-collapse  w-auto h-auto" id="sidenav-collapse-main">
 <ul class="navbar-nav">
-
 <li class="nav-item">
-<a class="nav-link" href="repors.php" target="_blank">
-<i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">report</i>
+<a class="nav-link" href="reports.php" >
+<i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">line_axis</i>
 <span class="nav-link-text ms-2 ps-1">Reports</span>
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="repors.php" target="_blank">
+<a class="nav-link" href="registered.php">
 <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">receipt_long</i>
 <span class="nav-link-text ms-2 ps-1">Registered Cars</span>
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="repors.php" target="_blank">
-<i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">receipt_long</i>
+<a class="nav-link" href="scanned.php">
+<i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">flag_circle</i>
 <span class="nav-link-text ms-2 ps-1">Scanned Cars</span>
 </a>
 </li>
@@ -147,7 +183,54 @@ notifications
 </nav>
 
 <div class="container-fluid py-4">
- 
+ <div>
+<h1 style="color:#000">  &nbsp;&nbsp;  &nbsp;&nbsp;Registered Vehicles</h1>
+<button>Add</button>
+</div>
+ <div class="table-responsive">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#ID</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Reg_ID</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NO. Plate</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Car Brand
+                </th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Car Model</th>
+
+
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date Stolen</th>
+
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Report Status</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Owners Name
+                </th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone Number</th>
+               
+
+              </tr>
+            </thead>
+            <tbody id="Staffs_body">
+              <?php
+
+              $result = $dbConn->query("SELECT * FROM scan ORDER BY id DESC");
+              while($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
+  
+                <tr>
+                  <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['id']?></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['id']?></span></td>
+                    
+                </tr><?php
+
+}
+$dbConn = null;?>
+
+            
+            </tbody>
+          </table>
+        </div>
 
 </div>
 <footer class="footer py-4  ">
