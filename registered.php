@@ -1,9 +1,17 @@
 
 <?php
 include("config.php");
-if ($_POST){
 
-$car_id = $_POST['in_CarId'];
+if ($_POST){
+  function lastID($dbConn){
+
+    $sql = "SELECT count(*) FROM missing_record"; 
+    $result = $dbConn->prepare($sql); 
+    $result->execute(); 
+    return $result->fetchColumn(); 
+    }
+
+$car_id = "V.REG_".sprintf('%04s', lastID($dbConn)+1);
 $num_plate = $_POST['in_NumPlate'];
 $car_make = $_POST['in_CarMake'];
 $car_model = $_POST['in_CarModel'];
@@ -15,9 +23,9 @@ $person_name = $_POST['in_PersonName'];
 $person_phone = $_POST['in_PersonPhone'];
 $person_address = $_POST['in_PersonAddress'];
 
-$sql = "INSERT INTO missing_record (id,,car_id,num_plate,car_make,car_model,car_colour,car_last_seen,date_stolen,report_status,person_name,person_phone,person_address) VALUES (:id,:,:car_id,:num_plate,:car_make,:car_model,:car_colour,:car_last_seen,:date_stolen,:report_status,:person_name,:person_phone,:person_address)";
+$sql = "INSERT INTO missing_record (id,car_id,num_plate,car_make,car_model,car_colour,car_last_seen,date_stolen,report_status,person_name,person_phone,person_address) VALUES (null,:car_id,:num_plate,:car_make,:car_model,:car_colour,:car_last_seen,:date_stolen,:report_status,:person_name,:person_phone,:person_address)";
 $query = $dbConn->prepare($sql);
-$query->bindparam(':id', $id);
+
 
 $query->bindparam(':car_id', $car_id);
 $query->bindparam(':num_plate', $num_plate);
@@ -31,7 +39,7 @@ $query->bindparam(':person_name', $person_name);
 $query->bindparam(':person_phone', $person_phone);
 $query->bindparam(':person_address', $person_address);
 $query->execute();
-$dbConn = null;
+
 header("registered.php");
 
 }
@@ -185,7 +193,78 @@ notifications
 <div class="container-fluid py-4">
  <div>
 <h1 style="color:#000">  &nbsp;&nbsp;  &nbsp;&nbsp;Registered Vehicles</h1>
-<button>Add</button>
+ <button type="button" class="" data-bs-toggle="modal" data-bs-target="#vehicleCreate" >
+           Register Vehicle
+          </button>
+     <div class="modal fade" id="vehicleCreate" tabindex="-1" role="dialog" aria-labelledby="modalStockTitle"
+            aria-hidden="true" style="border-radius: 0!important;">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+              <div class="modal-content" style="border-radius: 0!important;">
+                <div class="modal-body p-0">
+                  <div class="card card-plain">
+                    <div class="card-header pb-0 text-left">
+                      <h5 class="">Register Vehicle</h5>
+                      <p class="mb-0">Fill the form</p>
+                    </div>
+                    <div class="card-body pb-3">
+                      <form action="" method="POST">
+                        <div class='form-group'>
+      
+    <div class='form-group'>
+        <label for='in_NumPlate'>Num Plate</label>
+        <input name='in_NumPlate' id='in_NumPlate' class='form-control' type='text' >
+    </div>
+    <div class='form-group'>
+        <label for='in_CarMake'>Car Make</label>
+        <input name='in_CarMake' id='in_CarMake' class='form-control' type='text' >
+    </div>
+    <div class='form-group'>
+        <label for='in_CarModel'>Car Model</label>
+        <input name='in_CarModel' id='in_CarModel' class='form-control' type='text' >
+    </div>
+    <div class='form-group'>
+        <label for='in_CarColour'>Car Colour</label>
+        <input name='in_CarColour' id='in_CarColour' class='form-control' type='text' >
+    </div>
+    <div class='form-group'>
+        <label for='in_CarLastSeen'>Car Last Seen</label>
+        <input name='in_CarLastSeen' id='in_CarLastSeen' class='form-control' type='text' >
+    </div>
+    <div class='form-group'>
+        <label for='in_DateStolen'>Date Stolen</label>
+        <input name='in_DateStolen' id='in_DateStolen' class='form-control' type='date'  required >
+    </div>
+    <div class='form-group'>
+        <label for='in_ReportStatus'>Report Status</label>
+        <input name='in_ReportStatus' id='in_ReportStatus' class='form-control' type='text' >
+    </div>
+    <div class='form-group'>
+        <label for='in_PersonName'>Person Name</label>
+        <input name='in_PersonName' id='in_PersonName' class='form-control' type='text' >
+    </div>
+    <div class='form-group'>
+        <label for='in_PersonPhone'>Person Phone</label>
+        <input name='in_PersonPhone' id='in_PersonPhone' class='form-control' type='text' >
+    </div>
+    <div class='form-group'>
+        <label for='in_PersonAddress'>Person Address</label>
+        <input name='in_PersonAddress' id='in_PersonAddress' class='form-control' type='text' >
+    </div>
+
+
+                        <div class="text-center">
+                          <button  class="btn bg-gradient-success btn-lg btn-rounded w-100 mt-4 mb-0" type="Submit" 
+                            >Submit</button>
+                        </div>
+                      </form>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
 </div>
  <div class="table-responsive">
           <table class="table align-items-center mb-0">
@@ -233,7 +312,7 @@ notifications
                 </tr><?php
 
 }
-$dbConn = null;?>
+?>
 
             
             </tbody>
