@@ -44,7 +44,47 @@ include("config.php");
 .form-group > textarea {
      border: solid 1px #9093A5;
 }
-  </style>
+
+    .image-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .image-item {
+      cursor: pointer;
+    }
+    
+    .preview-container {
+      display: none;
+      position: fixed;
+      z-index: 99999999999999999999999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      overflow: auto;
+      text-align: center;
+    }
+    
+    .preview-container img {
+      max-width: 80%;
+      max-height: 80%;
+      margin: auto;
+      display: block;
+    }
+    
+    .close-button {
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+    }
+</style>
 
 </head>
 <body class="g-sidenav-show  bg-gray-200">
@@ -175,7 +215,7 @@ notifications
                 <tr>
                   <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['id']?></span></td>
                     <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['number_plate']?></td>
-                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><button>View Images</button></span></td>
+                    <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><button onclick="openPreview('detected_images/<?php echo $row['images']?>')">View Images</button></span></td>
                     <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo $row['Location']?></span></td>
                     <td class='align-middle text-center'><span class='text-secondary text-xs font-weight-normal'><?php echo  $row['DataTime']?></span></td>
                     
@@ -188,7 +228,10 @@ $dbConn = null;?>
             </tbody>
           </table>
         </div>
-
+        <div id="preview-container" class="preview-container">
+    <span class="close-button" onclick="closePreview()">&times;</span>
+    <img id="preview-image" src="" alt="Preview">
+  </div>
 </div>
 <footer class="footer py-4  ">
 <div class="container-fluid">
@@ -413,5 +456,20 @@ for a better web.
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <script src="assets/js/material-dashboard.min.js?v=3.0.5"></script>
+<script>
+function openPreview(imageUrl) {
+  var previewContainer = document.getElementById("preview-container");
+  var previewImage = document.getElementById("preview-image");
+
+  previewImage.src = imageUrl;
+  previewContainer.style.display = "block";
+}
+
+function closePreview() {
+  var previewContainer = document.getElementById("preview-container");
+
+  previewContainer.style.display = "none";
+}
+</script>
 </body>
 </html>

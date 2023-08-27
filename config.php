@@ -2,8 +2,8 @@
 
 $dbHost = 'localhost';
 $dbName = 'stolen_cars';
-$dbUser = 'root';
-$dbPasw = 'root';
+$dbUser = 'trevillion';
+$dbPasw = 'trev';
 try {
     $dbConn = new PDO("mysql:host={$dbHost};dbname={$dbName}", $dbUser, $dbPasw);
     $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

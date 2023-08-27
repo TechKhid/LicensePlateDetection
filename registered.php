@@ -85,6 +85,9 @@ header("registered.php");
 .form-group > textarea {
      border: solid 1px #9093A5;
 }
+input{
+  padding-left:20px
+}
   </style>
 
 </head>
@@ -236,7 +239,7 @@ notifications
     </div>
     <div class='form-group'>
         <label for='in_ReportStatus'>Report Status</label>
-        <input name='in_ReportStatus' id='in_ReportStatus' class='form-control' type='text' >
+        <input name='in_ReportStatus' id='in_ReportStatus'value ="SEARCHING" class='form-control' type='text' readonly >
     </div>
     <div class='form-group'>
         <label for='in_PersonName'>Person Name</label>
